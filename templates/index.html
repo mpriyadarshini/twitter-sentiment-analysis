@@ -3,8 +3,14 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
 
-    <meta charset="UTF-8">
+
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,9 +30,35 @@
             <div class="input-group-append">
                 <button type="submit" class="btn btn-dark">Search</button>
             </div>
+
+
         </div>
     </form>
-
+    
+    <div class="container">
+        {% if has_results %}
+        <div class="results mx-auto card">
+            <div class="card-body">
+                <table>
+                    <tr>
+                        <th class="text-success">Positive</th>
+                        <td class="text-success">{{ positive }}%</td>
+                    </tr>
+                    <tr>
+                        <th class="text-info">Neutral</th>
+                        <td class="text-info">{{ neutral }}%</td>
+                    </tr>
+                    <tr>
+                        <th class="text-danger">Negative</th>
+                        <td class="text-danger">{{ negative }}%</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <script src="static/chart.js"></script>
+    <script src="static/main.js"></script>
 </body>
 
 </html>
