@@ -36,7 +36,7 @@ def search():
 
     # percentage of positive tweets 
 
-    positive = 100*len(ptweets)/len(tweets)
+    positive = round(100*len(ptweets)/len(tweets),4)
 
     
 
@@ -48,13 +48,13 @@ def search():
 
     # percentage of negative tweets 
 
-    negative = 100*len(ntweets)/len(tweets)
+    negative = round(100*len(ntweets)/len(tweets),4)
 
     
 
     # percentage of neutral tweets 
 
-    neutral = 100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets)
+    neutral = round(100*(len(tweets) - len(ntweets) - len(ptweets))/len(tweets),4)
 
 
 
