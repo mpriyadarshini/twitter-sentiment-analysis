@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from twitter_client import TwitterClient
+import random
 
 app = Flask(__name__)
 
@@ -12,9 +13,10 @@ def index():
 @app.route('/search')
 def search():
     api = TwitterClient()
+    q = request.args.get('q')
 
     # calling function to get tweets
-    tweets = api.get_tweets(query=request.args.get('q'), count=200)
+    tweets = api.get_tweets(query=q, count=200)
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
@@ -41,7 +43,10 @@ def search():
             has_results=True,
             positive=positive,
             negative=negative,
-            neutral=neutral
+            neutral=neutral,
+            q=q,
+            ptweets=random.sample(ptweets,3),
+            ntweets=random.sample(ntweets,3)
     )
 
 if __name__ == "__main__":

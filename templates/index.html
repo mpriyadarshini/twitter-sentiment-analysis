@@ -22,11 +22,11 @@
 
 </head>
 
-<body class="d-flex flex-column align-items-center justify-content-center" style="background-color: bisque;">
+<body class="d-flex flex-column align-items-center justify-content-center py-5" style="background-color: bisque;">
     <h1>Type something</h1>
     <form method="GET" action="search">
         <div class="input-group">
-            <input type="text" placeholder="Search" name="q" />
+            <input type="text" placeholder="Search" name="q" value="{{q}}" />
             <div class="input-group-append">
                 <button type="submit" class="btn btn-dark">Search</button>
             </div>
@@ -37,8 +37,9 @@
     
     <div class="container">
         {% if has_results %}
-        <div class="results mx-auto card">
+        <div class="results mt-3 mx-auto card">
             <div class="card-body">
+                <h5 class="card-title">Twitter sentiment for {{q}}</h5>
                 <table>
                     <tr>
                         <th class="text-success">Positive</th>
@@ -55,7 +56,24 @@
                 </table>
             </div>
         </div>
+        <div class="card results mt-3 mx-auto">
+            <div class="card-body">
+                <h5 class="card-title">Positive tweets</h5>
+                {% for tweet in ptweets %}
+                <p>{{tweet['text']}}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card results mt-3 mx-auto">
+                <div class="card-body">
+                    <h5 class="card-title">Negative tweets</h5>
+                    {% for tweet in ntweets %}
+                        <p>{{tweet['text']}}</p>
+                    {% endfor %}
+                </div>
+            </div>
         {% endif %}
+
     </div>
     <script src="static/chart.js"></script>
     <script src="static/main.js"></script>
